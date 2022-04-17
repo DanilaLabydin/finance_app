@@ -2,8 +2,20 @@
 
 {% block content %}
 
+<ul>
 {% for food in food_products%}
-{{food.title}} {{food.amount}} {{food.price}}
+<li>
+    <div
+            role="button"
+            onclick="location.href='#'">
+{{food.title}}               {{food.amount}}                      {{food.price}}₽               {{food.date}}
+</li>
 {% endfor %}
-
+</ul>
+<p>
+    <input
+        value="Add a new item"
+        type="button"
+        onclick="location.href='#'"/>
+</p>
 {% endblock %}
