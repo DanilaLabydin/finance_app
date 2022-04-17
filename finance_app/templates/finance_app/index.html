@@ -1,0 +1,9 @@
+{% extends "finance_app/base.html" %}
+
+{% block content %}
+
+{% for food in food_products%}
+{{food.title}} {{food.amount}} {{food.price}}
+{% endfor %}
+
+{% endblock %}
