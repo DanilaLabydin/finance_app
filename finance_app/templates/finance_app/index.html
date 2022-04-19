@@ -8,7 +8,7 @@
     <div
             role="button"
             onclick="location.href='#'">
-{{food.title}}               {{food.amount}}                      {{food.price}}₽               {{food.date}}
+title: {{food.title | upper}}     amount: {{food.amount  }}      price: {{food.price}}₽      date: {{food.date | date:"l, F j"}}
 </li>
 {% endfor %}
 </ul>
@@ -16,6 +16,6 @@
     <input
         value="Add a new item"
         type="button"
-        onclick="location.href='#'"/>
+        onclick="location.href='new_item'"/>
 </p>
 {% endblock %}
