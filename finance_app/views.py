@@ -6,13 +6,11 @@ from .forms import FoodProductsForm
 
 
 def index(request):
-    food_products = FoodProducts.objects.all()
-    print(food_products)
+    # food_products = FoodProducts.objects.all()
+    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as A FROM finance_app_foodproducts')
+    # print(food_products)
     context = {'food_products': food_products}
     return render(request, 'finance_app/index.html', context)
-
-
-
 
 
 def add_item(request):
