@@ -1,17 +1,17 @@
-{% extends "finance_app/base.html" %}
 
+{% load poll_extras %}
 {% block content %}
 
-<ul>
+
 {% for rest in rests%}
-<li>
+
     <div
-            role="button"
+
             onclick="location.href='#'">
-title: {{rest.title}}     amount: {{rest.amount  }}      price: {{rest.price}}₽      date: {{rest.date | date:"l, F j"}}  total price {{rest.A}}₽
-</li>
+{{rest.title | lower1 }}{{rest.amount | lower1 }}{{rest.price| lower1}}₽{{rest.date | date:"l, F j"}}{{rest.A}}₽
+
 {% endfor %}
-</ul>
+
 <p>
     <input
         value="Add a new rest"

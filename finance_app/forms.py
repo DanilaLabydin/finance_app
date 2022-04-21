@@ -1,5 +1,5 @@
 from django import forms
-from .models import FoodProducts
+from .models import FoodProducts, Rest
 
 
 class FoodProductsForm(forms.ModelForm):
@@ -10,5 +10,5 @@ class FoodProductsForm(forms.ModelForm):
 
 class RestForm(forms.ModelForm):
     class Meta:
-        model = FoodProducts
+        model = Rest
         fields = ['title', 'amount', 'price', 'date']
