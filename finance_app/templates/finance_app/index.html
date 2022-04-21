@@ -2,20 +2,17 @@
 
 {% block content %}
 
-<ul>
-{% for food in food_products%}
-<li>
-    <div
-            role="button"
-            onclick="location.href='#'">
-title: {{food.title | upper}}     amount: {{food.amount  }}      price: {{food.price}}₽      date: {{food.date | date:"l, F j"}}  total price {{food.A}}₽
-</li>
-{% endfor %}
-</ul>
-<p>
+
+<div>
     <input
-        value="Add a new item"
+        value="products"
         type="button"
-        onclick="location.href='new_item'"/>
-</p>
+        onclick="location.href='items_list'"/>
+</div>
+<div>
+    <input
+        value="resting"
+        type="button"
+        onclick="location.href='rests_list'"/>
+</div>
 {% endblock %}

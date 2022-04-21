@@ -17,3 +17,16 @@ class FoodProducts(models.Model):
 
     class Meta:
         ordering = ["date"]
+
+
+class Rest(models.Model):
+    title = models.CharField(max_length=100)
+    amount = models.IntegerField()
+    price = models.FloatField()
+    date = models.DateTimeField(default=get_time)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ["date"]

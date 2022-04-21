@@ -1,0 +1,21 @@
+{% extends "finance_app/base.html" %}
+
+{% block content %}
+
+<ul>
+{% for rest in rests%}
+<li>
+    <div
+            role="button"
+            onclick="location.href='#'">
+title: {{rest.title}}     amount: {{rest.amount  }}      price: {{rest.price}}₽      date: {{rest.date | date:"l, F j"}}  total price {{rest.A}}₽
+</li>
+{% endfor %}
+</ul>
+<p>
+    <input
+        value="Add a new rest"
+        type="button"
+        onclick="location.href='new_rest'"/>
+</p>
+{% endblock %}
