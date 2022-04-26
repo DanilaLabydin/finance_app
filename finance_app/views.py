@@ -10,14 +10,15 @@ def index(request):
 
 
 def items_list(request):
-    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as A FROM finance_app_foodproducts')
+    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts')
     context = {'food_products': food_products}
     return render(request, 'finance_app/items_list.html', context)
 
 
 def rests_list(request):
-    rests = Rest.objects.raw('SELECT id, title, amount, price, date, amount*price as A FROM finance_app_rest')
-    context = {'rests': rests}
+    rests = Rest.objects.all()
+    headers = ['title', 'amount', 'price', 'date']
+    context = {'rests': rests, 'headers': headers}
     return render(request, 'finance_app/rests_list.html', context)
 
 
@@ -45,3 +46,11 @@ def add_rest(request):
 
     context = {'form': form}
     return render(request, 'finance_app/add_rest.html', context)
+
+
+def test(request):
+    headers = ['date', 'a', 'b', 'c']
+    body = [{'date': '2015-10-16', 'a': 1, 'b': 2, 'c': 3},
+            {'date': '2015-10-17', 'a': 4, 'b': 5, 'c': 6}]
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/test.html', context)

@@ -7,4 +7,5 @@ urlpatterns = [
     path('rests_list', views.rests_list, name='rests_list'),
     path('new_item/', views.add_item, name='new_item'),
     path('new_rest/', views.add_rest, name='new_rest'),
+    path('test/', views.test, name='test'),
 ]
