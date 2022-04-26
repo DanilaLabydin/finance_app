@@ -4,25 +4,24 @@
 
 <table>
     <thead>
-        <tr>
-            {% for th in headers%}
-            <th>{{ th }}</th>
-            {% endfor %}
-        </tr>
+      <tr>
+         {% for th in headers %}
+           <th>{{ th }}</th>
+         {% endfor %}
+      </tr>
     </thead>
     <tbody>
-        {% for bd in rests %}
-        <tr>
-            {% for h in headers %}
-             {% with h as key %}
-             <td>{{ bd|get_dict_item:key }}</td>
-             {% endwith %}
-            {% endfor %}
-        </tr>
+      {% for bd in body  %}
+       <tr>
+        {% for h in headers  %}
+         {% with h as key %}
+         <td>{{ bd|get_dict_item:key }}</td>
+         {% endwith %}
         {% endfor %}
+       </tr>
+      {% endfor %}
     </tbody>
 </table>
-
 <p>
     <input
         value="Add a new rest"

@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import FoodProducts, Rest
@@ -11,14 +13,23 @@ def index(request):
 
 def items_list(request):
     food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts')
-    context = {'food_products': food_products}
+    headers = ['title', 'amount', 'price', 'total', 'date']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         price=food.price, total=food.total, date=food.date))
+    context = {'headers': headers, 'body': body}
     return render(request, 'finance_app/items_list.html', context)
 
 
 def rests_list(request):
     rests = Rest.objects.all()
+    body = []
+    for rest in rests:
+        body.append(dict(title=rest.title, amount=rest.amount,
+                         price=rest.price, date=rest.date))
     headers = ['title', 'amount', 'price', 'date']
-    context = {'rests': rests, 'headers': headers}
+    context = {'headers': headers, 'body': body}
     return render(request, 'finance_app/rests_list.html', context)
 
 

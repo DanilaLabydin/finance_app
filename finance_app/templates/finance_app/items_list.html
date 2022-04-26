@@ -1,18 +1,27 @@
 {% extends "finance_app/base.html" %}
-
+{% load poll_extras %}
 {% block content %}
 
-<ul>
-{% for food in food_products%}
-<li>
-    <div
-            role="button"
-            onclick="location.href='#'">
-title: {{food.title | upper}}     amount: {{food.amount  }}      price: {{food.price}}₽      date: {{food.date | date:"l, F j"}}  total price {{food.A}}₽
-</li>
-{% endfor %}
-</ul>
-<p>
+<table>
+    <thead>
+      <tr>
+         {% for th in headers %}
+           <th>{{ th }}</th>
+         {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for bd in body  %}
+       <tr>
+        {% for h in headers  %}
+         {% with h as key %}
+         <td>{{ bd|get_dict_item:key }}</td>
+         {% endwith %}
+        {% endfor %}
+       </tr>
+      {% endfor %}
+    </tbody>
+</table>
     <input
         value="Add a new item"
         type="button"
