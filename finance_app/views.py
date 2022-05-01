@@ -58,6 +58,84 @@ def add_stuff(request):
     return render(request, 'finance_app/add_stuff.html', context)
 
 
+# sorting the stuff
+
+
+def stuff_order_price_asc(request):
+    stuff = Stuff.objects.order_by('price')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+def stuff_order_price_desc(request):
+    stuff = Stuff.objects.order_by('-price')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+def stuff_order_title_asc(request):
+    stuff = Stuff.objects.order_by('title')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+def stuff_order_title_desc(request):
+    stuff = Stuff.objects.order_by('-title')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+def stuff_order_date_asc(request):
+    stuff = Stuff.objects.order_by('date')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+def stuff_order_date_desc(request):
+    stuff = Stuff.objects.order_by('-date')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_list.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def test(request):
     headers = ['date', 'a', 'b', 'c']
     body = [{'date': '2015-10-16', 'a': 1, 'b': 2, 'c': 3},

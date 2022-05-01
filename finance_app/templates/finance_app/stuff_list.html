@@ -5,13 +5,21 @@
 <table>
     <thead>
       <tr>
-         {% for th in headers %}
-           <th>
-               {{ th }}
-               <a href="{% url 'index' %}">↑</a>
-               <a href="{% url 'index' %}">↓</a>
-           </th>
-         {% endfor %}
+         <th>
+             title
+             <a href="{% url 'stuff_title_asc' %}">↑</a>
+             <a href="{% url 'stuff_title_desc' %}">↓</a>
+         </th>
+          <th>
+             price
+              <a href="{% url 'stuff_price_asc' %}">↑</a>
+              <a href="{% url 'stuff_price_desc' %}">↓</a>
+         </th>
+          <th>
+             date
+              <a href="{% url 'stuff_date_asc' %}">↑</a>
+              <a href="{% url 'stuff_date_desc' %}">↓</a>
+         </th>
       </tr>
     </thead>
     <tbody>
