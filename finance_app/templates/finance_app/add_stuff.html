@@ -1,9 +1,9 @@
 {% extends "finance_app/base.html" %}
 {% block content %}
-<p>Add a new rest:</p>
-<form action="{% url 'new_rest' %}" method='post'>
+<p>Add a new stuff:</p>
+<form action="{% url 'new_stuff' %}" method='post'>
 {% csrf_token %}
 {{ form.as_p }}
-<button name="submit">Add new rest</button>
+<button name="submit">Add new stuff</button>
 </form>
 {% endblock content %}

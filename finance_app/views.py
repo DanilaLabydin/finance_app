@@ -2,9 +2,9 @@ import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import FoodProducts, Rest
+from .models import FoodProducts, Rest, Stuff
 from django.views.generic import CreateView
-from .forms import FoodProductsForm, RestForm
+from .forms import FoodProductsForm, StuffForm
 
 
 def index(request):
@@ -17,20 +17,19 @@ def items_list(request):
     body = []
     for food in food_products:
         body.append(dict(title=food.title, amount=food.amount,
-                         price=food.price, total=food.total, date=food.date))
+                         price=food.price, total=food.total, date=str(food.date)[:10]))
     context = {'headers': headers, 'body': body}
     return render(request, 'finance_app/items_list.html', context)
 
 
-def rests_list(request):
-    rests = Rest.objects.all()
+def stuff_list(request):
+    stuff = Stuff.objects.all()
     body = []
-    for rest in rests:
-        body.append(dict(title=rest.title, amount=rest.amount,
-                         price=rest.price, date=rest.date))
-    headers = ['title', 'amount', 'price', 'date']
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10]))
+    headers = ['title', 'price', 'date']
     context = {'headers': headers, 'body': body}
-    return render(request, 'finance_app/rests_list.html', context)
+    return render(request, 'finance_app/stuff_list.html', context)
 
 
 def add_item(request):
@@ -43,20 +42,20 @@ def add_item(request):
             return redirect('index')
 
     context = {'form': form}
-    return render(request, 'finance_app/add_item_form.html', context)
+    return render(request, 'finance_app/add_item.html', context)
 
 
-def add_rest(request):
+def add_stuff(request):
     if request.method != 'POST':
-        form = RestForm()
+        form = StuffForm
     else:
-        form = RestForm(data=request.POST)
+        form = StuffForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
 
     context = {'form': form}
-    return render(request, 'finance_app/add_rest.html', context)
+    return render(request, 'finance_app/add_stuff.html', context)
 
 
 def test(request):

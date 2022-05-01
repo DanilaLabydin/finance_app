@@ -1,5 +1,5 @@
 from django import forms
-from .models import FoodProducts, Rest
+from .models import FoodProducts, Stuff
 
 
 class FoodProductsForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class FoodProductsForm(forms.ModelForm):
         fields = ['title', 'amount', 'price', 'date']
 
 
-class RestForm(forms.ModelForm):
+class StuffForm(forms.ModelForm):
     class Meta:
-        model = Rest
-        fields = ['title', 'amount', 'price', 'date']
+        model = Stuff
+        fields = ['title', 'price', 'date']
