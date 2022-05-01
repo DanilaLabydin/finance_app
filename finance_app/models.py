@@ -9,7 +9,7 @@ def get_time():
 class FoodProducts(models.Model):
     title = models.CharField(max_length=100)
     amount = models.IntegerField()
-    price = models.FloatField()
+    price = models.IntegerField()
     date = models.DateTimeField(default=get_time)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class FoodProducts(models.Model):
 class Rest(models.Model):
     title = models.CharField(max_length=100)
     amount = models.IntegerField()
-    price = models.FloatField()
+    price = models.IntegerField()
     date = models.DateTimeField(default=get_time)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Rest(models.Model):
 
 class Stuff(models.Model):
     title = models.CharField(max_length=100)
-    price = models.FloatField()
+    price = models.IntegerField()
     date = models.DateTimeField(default=get_time)
 
     def __str__(self):

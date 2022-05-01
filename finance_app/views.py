@@ -39,7 +39,7 @@ def add_item(request):
         form = FoodProductsForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('items_list')
 
     context = {'form': form}
     return render(request, 'finance_app/add_item.html', context)
@@ -52,7 +52,7 @@ def add_stuff(request):
         form = StuffForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('stuff_list')
 
     context = {'form': form}
     return render(request, 'finance_app/add_stuff.html', context)

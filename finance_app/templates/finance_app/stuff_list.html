@@ -6,7 +6,11 @@
     <thead>
       <tr>
          {% for th in headers %}
-           <th>{{ th }}</th>
+           <th>
+               {{ th }}
+               <a href="{% url 'index' %}">↑</a>
+               <a href="{% url 'index' %}">↓</a>
+           </th>
          {% endfor %}
       </tr>
     </thead>
