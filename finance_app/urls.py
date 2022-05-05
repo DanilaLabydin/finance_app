@@ -9,6 +9,13 @@ urlpatterns = [
     path('new_stuff/', views.add_stuff, name='new_stuff'),
     path('test/', views.test, name='test'),
 
+    # group by title stuff
+    path('stuff_list_group_title_asc', views.stuff_group_title_asc, name='stuff_list_group_title_asc'),
+    path('stuff_list_group_title_desc', views.stuff_group_title_desc, name='stuff_list_group_title_desc'),
+    path('stuff_list_group_title_total_asc', views.stuff_group_title_total_asc, name='stuff_list_group_title_total_asc'),
+    path('stuff_list_group_title_total_desc', views.stuff_group_title_total_desc, name='stuff_list_group_title_total_desc'),
+
+
     # stuff sorting
     path('stuff_price_asc', views.stuff_order_price_asc, name='stuff_price_asc'),
     path('stuff_price_desc', views.stuff_order_price_desc, name='stuff_price_desc'),
