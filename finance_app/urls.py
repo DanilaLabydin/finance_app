@@ -15,6 +15,11 @@ urlpatterns = [
     path('stuff_list_group_title_total_asc', views.stuff_group_title_total_asc, name='stuff_list_group_title_total_asc'),
     path('stuff_list_group_title_total_desc', views.stuff_group_title_total_desc, name='stuff_list_group_title_total_desc'),
 
+    # group by date stuff
+    path('stuff_list_group_date_total_desc', views.stuff_group_date_total_desc, name='stuff_list_group_date_total_desc'),
+    path('stuff_list_group_date_total_asc', views.stuff_group_date_total_asc, name='stuff_list_group_date_total_asc'),
+    path('stuff_list_group_date_date_desc', views.stuff_group_date_date_desc, name='stuff_list_group_date_date_desc'),
+    path('stuff_list_group_date_date_asc', views.stuff_group_date_date_asc, name='stuff_list_group_date_date_asc'),
 
     # stuff sorting
     path('stuff_price_asc', views.stuff_order_price_asc, name='stuff_price_asc'),
@@ -23,6 +28,9 @@ urlpatterns = [
     path('stuff_title_desc', views.stuff_order_title_desc, name='stuff_title_desc'),
     path('stuff_date_asc', views.stuff_order_date_asc, name='stuff_date_asc'),
     path('stuff_date_desc', views.stuff_order_date_desc, name='stuff_date_desc'),
+
+    # group by title food
+
 
     # food sorting
     path('items_list_group_title', views.items_list_group_title, name='items_list_group_title'),
