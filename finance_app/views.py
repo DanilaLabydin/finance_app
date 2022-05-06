@@ -202,22 +202,167 @@ def stuff_group_date_date_asc(request):
 
 
 # sorting the food
-# food group bt title
+# food group by title
 def items_list_group_title(request):
     food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
-                                             'sum(amount*price) as total'
-                                             'FROM finance_app_foodproducts GROUP BY title')
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY title')
     headers = ['title', 'amount', 'total']
     body = []
     for food in food_products:
         body.append(dict(title=food.title, amount=food.amount,
-                         price=food.price, total=food.total, date=str(food.date)[:10]))
+                         total=food.total, date=str(food.date)[:10]))
     context = {'headers': headers, 'body': body}
     return render(request, 'finance_app/items_list_group.html', context)
 
 
+def items_list_group_title_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY title DESC')
+    headers = ['title', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group.html', context)
+
+
+def items_list_group_title_amount_asc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY amount ASC')
+    headers = ['title', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group.html', context)
+
+
+def items_list_group_title_amount_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY amount DESC')
+    headers = ['title', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group.html', context)
+
+
+def items_list_group_title_total_asc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY total ASC')
+    headers = ['title', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group.html', context)
+
+
+def items_list_group_title_total_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, title, sum(amount) as amount,'
+                                             'sum(amount*price) as total '
+                                             'FROM finance_app_foodproducts GROUP BY title ORDER BY total DESC')
+    headers = ['title', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group.html', context)
+
+
+# group by date food
+def items_list_group_date_total_asc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY total ASC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+
+
+def items_list_group_date_total_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY total DESC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+
+
+def items_list_group_date_amount_asc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY amount ASC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+
+
+def items_list_group_date_amount_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY amount DESC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+
+
+def items_list_group_date_asc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY date ASC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+
+
+def items_list_group_date_desc(request):
+    food_products = FoodProducts.objects.raw('SELECT id, sum(amount) as amount,'
+                                             'sum(amount*price) as total, date '
+                                             'FROM finance_app_foodproducts GROUP BY date ORDER BY date DESC')
+    headers = ['date', 'amount', 'total']
+    body = []
+    for food in food_products:
+        body.append(dict(title=food.title, amount=food.amount,
+                         total=food.total, date=str(food.date)[:10]))
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/items_list_group_date.html', context)
+# sorting food
+
+
 def food_order_price_asc(request):
-    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts GROUP BY title ORDER BY price asc')
+    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts ORDER BY price asc')
     headers = ['title', 'amount', 'price', 'total', 'date']
     body = []
     for food in food_products:
@@ -228,7 +373,7 @@ def food_order_price_asc(request):
 
 
 def food_order_price_desc(request):
-    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts GROUP BY title ORDER BY price DESC')
+    food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts ORDER BY price DESC')
     headers = ['title', 'amount', 'price', 'total', 'date']
     body = []
     for food in food_products:
@@ -312,7 +457,7 @@ def food_order_total_desc(request):
 
 def food_order_date_asc(request):
     food_products = FoodProducts.objects.raw(
-        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts GROUP BY title ORDER BY price')
+        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts  ORDER BY price')
     headers = ['title', 'amount', 'price', 'total', 'date']
     body = []
     for food in food_products:
@@ -324,7 +469,7 @@ def food_order_date_asc(request):
 
 def food_order_date_desc(request):
     food_products = FoodProducts.objects.raw(
-        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts GROUP BY title ORDER BY price')
+        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts ORDER BY price')
     headers = ['title', 'amount', 'price', 'total', 'date']
     body = []
     for food in food_products:

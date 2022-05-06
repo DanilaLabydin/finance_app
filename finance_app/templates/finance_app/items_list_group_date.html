@@ -3,34 +3,23 @@
 {% block content %}
 <a href="{% url 'items_list'%}">all</a> | <a href="{% url 'items_list_group_title'%}">group by title</a>|
 <a href="{% url 'items_list_group_date_total_asc'%}">group by date</a>
-
 <table>
     <thead>
       <tr>
          <th>
-             title
-             <a href="{% url 'food_title_asc' %}">↑</a>
-             <a href="{% url 'food_title_desc' %}">↓</a>
-         </th>
-          <th>
              amount
-             <a href="{% url 'food_amount_asc' %}">↑</a>
-             <a href="{% url 'food_amount_desc' %}">↓</a>
+             <a href="{% url 'items_list_group_date_amount_asc' %}">↑</a>
+             <a href="{% url 'items_list_group_date_amount_desc' %}">↓</a>
          </th>
-          <th>
-             price
-             <a href="{% url 'food_price_asc'%}">↑</a>
-             <a href="{% url 'food_price_desc'%}">↓</a>
-         </th>
-          <th>
+          <th>q
              total
-              <a href="{% url 'food_total_asc' %}">↑</a>
-             <a href="{% url 'food_total_desc' %}">↓</a>
+             <a href="{% url 'items_list_group_date_total_asc' %}">↑</a>
+             <a href="{% url 'items_list_group_date_total_desc' %}">↓</a>
          </th>
           <th>
              date
-              <a href="{% url 'food_date_asc' %}">↑</a>
-             <a href="{% url 'food_date_desc' %}">↓</a>
+             <a href="{% url 'items_list_group_date_asc' %}">↑</a>
+             <a href="{% url 'items_list_group_date_desc' %}">↓</a>
          </th>
       </tr>
     </thead>
