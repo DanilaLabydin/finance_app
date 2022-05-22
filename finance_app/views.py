@@ -469,7 +469,7 @@ def food_order_date_asc(request):
 
 def food_order_date_desc(request):
     food_products = FoodProducts.objects.raw(
-        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts ORDER BY price')
+        'SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts ORDER BY price DESC')
     headers = ['title', 'amount', 'price', 'total', 'date']
     body = []
     for food in food_products:

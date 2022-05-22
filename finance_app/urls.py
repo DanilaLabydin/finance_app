@@ -7,7 +7,7 @@ urlpatterns = [
     path('stuff_list', views.stuff_list, name='stuff_list'),
     path('items_list/new_item/', views.add_item, name='new_item'),
     path('new_stuff/', views.add_stuff, name='new_stuff'),
-    path('test/', views.test, name='test'),
+
 
     # group by title stuff
     path('stuff_list_group_title_asc', views.stuff_group_title_asc, name='stuff_list_group_title_asc'),
