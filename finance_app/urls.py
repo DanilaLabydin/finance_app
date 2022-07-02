@@ -58,4 +58,7 @@ urlpatterns = [
     path('food_total_desc', views.food_order_total_desc, name='food_total_desc'),
     path('food_date_asc', views.food_order_date_asc, name='food_date_asc'),
     path('food_date_desc', views.food_order_date_desc, name='food_date_desc'),
+
+    path('sstuff_list', views.sstuff_list, name='sstuff_list'),
+    path('new_sstuff/', views.add_sstuff, name='new_sstuff'),
 ]

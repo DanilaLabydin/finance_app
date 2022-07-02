@@ -1,0 +1,49 @@
+{% extends "finance_app/base.html" %}
+{% load poll_extras %}
+{% block content %}
+<a href="{% url 'stuff_list'%}">all</a> | <a href="{% url 'stuff_list_group_title_asc'%}">group by title</a>|
+<a href="{% url 'stuff_list_group_date_total_desc'%}">group by date</a>
+<table>
+    <thead>
+      <tr>
+         <th>
+             title
+             <a href="{% url 'stuff_title_asc' %}">↑</a>
+             <a href="{% url 'stuff_title_desc' %}">↓</a>
+         </th>
+          <th>
+             price
+              <a href="{% url 'stuff_price_asc' %}">↑</a>
+              <a href="{% url 'stuff_price_desc' %}">↓</a>
+         </th>
+          <th>
+             date
+              <a href="{% url 'stuff_date_asc' %}">↑</a>
+              <a href="{% url 'stuff_date_desc' %}">↓</a>
+         </th>
+          <th>
+             month
+              <a href="{% url 'stuff_date_asc' %}">↑</a>
+              <a href="{% url 'stuff_date_desc' %}">↓</a>
+         </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bd in body  %}
+       <tr>
+        {% for h in headers  %}
+         {% with h as key %}
+         <td>{{ bd|get_dict_item:key }}</td>
+         {% endwith %}
+        {% endfor %}
+       </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<p>
+    <input
+        value="Add a new sstuff"
+        type="button"
+        onclick="location.href='new_sstuff'"/>
+</p>
+{% endblock %}

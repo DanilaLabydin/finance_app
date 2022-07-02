@@ -2,9 +2,9 @@ import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import FoodProducts, Rest, Stuff
+from .models import FoodProducts, Rest, Stuff, SStuff, FFoodProducts
 from django.views.generic import CreateView
-from .forms import FoodProductsForm, StuffForm
+from .forms import FoodProductsForm, StuffForm, SStuffForm
 
 
 def index(request):
@@ -485,3 +485,58 @@ def test(request):
             {'date': '2015-10-17', 'a': 4, 'b': 5, 'c': 6}]
     context = {'headers': headers, 'body': body}
     return render(request, 'finance_app/test.html', context)
+
+
+def test_template(request):
+    food_products = FoodProducts.objects.raw(
+        "SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts")
+    context = {'food_products': food_products}
+    return render(request, 'finance_app/test2.html', context)
+
+
+# SSTUFF
+def sstuff_list(request):
+    stuff = SStuff.objects.all()
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/sstuff_list.html', context)
+
+
+def add_sstuff(request):
+    if request.method != 'POST':
+        form = SStuffForm
+    else:
+        form = SStuffForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sstuff_list')
+
+    context = {'form': form}
+    return render(request, 'finance_app/add_sstuff.html', context)
+
+
+# FFOOD
+def ffood_list(request):
+    stuff = FFoodProducts.objects.all()
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/sstuff_list.html', context)
+
+
+def add_ffood(request):
+    if request.method != 'POST':
+        form = SStuffForm
+    else:
+        form = SStuffForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sstuff_list')
+
+    context = {'form': form}
+    return render(request, 'finance_app/add_sstuff.html', context)
