@@ -7,6 +7,7 @@ urlpatterns = [
     path('stuff_list', views.stuff_list, name='stuff_list'),
     path('items_list/new_item/', views.add_item, name='new_item'),
     path('new_stuff/', views.add_stuff, name='new_stuff'),
+    path('sstuff_months/', views.sstuff_months, name='sstuff_months'),
 
 
     # group by title stuff
@@ -59,6 +60,14 @@ urlpatterns = [
     path('food_date_asc', views.food_order_date_asc, name='food_date_asc'),
     path('food_date_desc', views.food_order_date_desc, name='food_date_desc'),
 
-    path('sstuff_list', views.sstuff_list, name='sstuff_list'),
+
+    # sstuff july
+    path('sstuff_months/sstuff_list', views.sstuff_list_july, name='sstuff_list'),
     path('new_sstuff/', views.add_sstuff, name='new_sstuff'),
+    path('sstuff_title_desc', views.sstuff_order_title_desc_july, name='sstuff_title_desc'),
+    path('sstuff_title_asc', views.sstuff_order_title_asc_july, name='sstuff_title_asc'),
+    path('sstuff_price_asc', views.sstuff_order_price_asc_july, name='sstuff_price_asc'),
+    path('sstuff_price_desc', views.sstuff_order_price_desc_july, name='sstuff_price_desc'),
+    path('sstuff_date_asc', views.sstuff_order_date_asc_july, name='sstuff_date_asc'),
+    path('sstuff_date_desc', views.sstuff_order_date_desc_july, name='sstuff_date_desc'),
 ]

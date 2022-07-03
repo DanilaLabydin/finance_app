@@ -11,6 +11,9 @@ def index(request):
     return render(request, 'finance_app/index.html')
 
 
+def sstuff_months(request):
+    return render(request, 'finance_app/sstuff_months.html')
+
 def items_list(request):
     food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts')
     headers = ['title', 'amount', 'price', 'total', 'date']
@@ -494,15 +497,22 @@ def test_template(request):
     return render(request, 'finance_app/test2.html', context)
 
 
-# SSTUFF
-def sstuff_list(request):
+# SSTUFF July
+def sstuff_list_july(request):
     stuff = SStuff.objects.all()
     body = []
     for i in stuff:
         body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
     headers = ['title', 'price', 'date', 'month']
-    context = {'headers': headers, 'body': body}
-    return render(request, 'finance_app/sstuff_list.html', context)
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
 
 
 def add_sstuff(request):
@@ -518,6 +528,121 @@ def add_sstuff(request):
     return render(request, 'finance_app/add_sstuff.html', context)
 
 
+def sstuff_order_title_asc_july(request):
+    stuff = SStuff.objects.order_by('title')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+def sstuff_order_title_desc_july(request):
+    stuff = SStuff.objects.order_by('-title')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+def sstuff_order_price_asc_july(request):
+    stuff = SStuff.objects.order_by('price')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+def sstuff_order_price_desc_july(request):
+    stuff = SStuff.objects.order_by('-price')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+def sstuff_order_date_asc_july(request):
+    stuff = SStuff.objects.order_by('date')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+def sstuff_order_date_desc_july(request):
+    # all data table
+    stuff = SStuff.objects.order_by('-date')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
+    headers = ['title', 'price', 'date', 'month']
+
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/sstuff_list_july.html', context)
+
+
+'''
+def stuff_group_title_total_desc(request):
+    stuff = Stuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_stuff GROUP BY title ORDER BY total DESC')
+    body = []
+    for i in stuff:
+        body.append(dict(title=i.title, total=i.total))
+    headers = ['title', 'total']
+    context = {'headers': headers, 'body': body}
+    return render(request, 'finance_app/stuff_group_title.html', context)
+'''
+
 # FFOOD
 def ffood_list(request):
     stuff = FFoodProducts.objects.all()
@@ -526,7 +651,7 @@ def ffood_list(request):
         body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
     headers = ['title', 'price', 'date', 'month']
     context = {'headers': headers, 'body': body}
-    return render(request, 'finance_app/sstuff_list.html', context)
+    return render(request, 'finance_app/sstuff_list_july.html', context)
 
 
 def add_ffood(request):
