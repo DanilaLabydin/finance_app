@@ -35,7 +35,7 @@ def get_month():
         output = 'November'
     else:
         output = 'December'
-    return output
+    return str(output)
 
 
 class FoodProducts(models.Model):
@@ -93,7 +93,7 @@ class Stuffs(models.Model):
     title = models.CharField(max_length=100)
     price = models.IntegerField()
     date = models.DateTimeField(default=get_time)
-    month = models.DateTimeField(default=get_month)
+    month = models.TextField(default=get_month)
 
     def __str__(self):
         return self.title
@@ -107,7 +107,7 @@ class FFoodProducts(models.Model):
     amount = models.IntegerField()
     price = models.IntegerField()
     date = models.DateTimeField(default=get_time)
-    month = models.DateTimeField(default=get_month)
+    month = models.TextField(default=get_month)
 
     def __str__(self):
         return self.title

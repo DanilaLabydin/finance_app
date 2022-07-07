@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import FoodProducts, Rest, Stuff, SStuff, FFoodProducts
 from django.views.generic import CreateView
-from .forms import FoodProductsForm, StuffForm, SStuffForm
+from .forms import FoodProductsForm, StuffForm, SStuffForm, FFoodForm
 
 
 def index(request):
@@ -13,6 +13,10 @@ def index(request):
 
 def sstuff_months(request):
     return render(request, 'finance_app/sstuff_months.html')
+
+
+def ffood_months(request):
+    return render(request, 'finance_app/ffood_months.html')
 
 def items_list(request):
     food_products = FoodProducts.objects.raw('SELECT id, title, amount, price, date, amount*price as total FROM finance_app_foodproducts')
@@ -632,36 +636,34 @@ def sstuff_order_date_desc_july(request):
     return render(request, 'finance_app/sstuff_list_july.html', context)
 
 
-'''
-def stuff_group_title_total_desc(request):
-    stuff = Stuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_stuff GROUP BY title ORDER BY total DESC')
-    body = []
-    for i in stuff:
-        body.append(dict(title=i.title, total=i.total))
-    headers = ['title', 'total']
-    context = {'headers': headers, 'body': body}
-    return render(request, 'finance_app/stuff_group_title.html', context)
-'''
 
-# FFOOD
-def ffood_list(request):
+# FFOOD July
+def ffood_list_july(request):
     stuff = FFoodProducts.objects.all()
     body = []
     for i in stuff:
         body.append(dict(title=i.title, price=i.price, date=str(i.date)[:10], month=i.month))
     headers = ['title', 'price', 'date', 'month']
-    context = {'headers': headers, 'body': body}
-    return render(request, 'finance_app/sstuff_list_july.html', context)
+    # the biggest price table
+    stuff_biggest_price = SStuff.objects.raw('SELECT id, title, sum(price) as total FROM finance_app_sstuff GROUP BY title ORDER BY total DESC LIMIT 5')
+    body_big_price = []
+    for i in stuff_biggest_price:
+        body_big_price.append(dict(title=i.title, total=i.total))
+    headers_big_price = ['title', 'total']
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    return render(request, 'finance_app/ffood_list_july.html', context)
 
 
-def add_ffood(request):
+def new_ffood(request):
     if request.method != 'POST':
-        form = SStuffForm
+        form = FFoodForm
     else:
-        form = SStuffForm(data=request.POST)
+        form = FFoodForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sstuff_list')
+            return redirect('ffood_list')
 
     context = {'form': form}
-    return render(request, 'finance_app/add_sstuff.html', context)
+    return render(request, 'finance_app/add_ffood.html', context)
+
