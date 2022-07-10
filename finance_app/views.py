@@ -515,7 +515,11 @@ def sstuff_list_july(request):
         body_big_price.append(dict(title=i.title, total=i.total))
     headers_big_price = ['title', 'total']
 
-    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    # total
+    total_sum = SStuff.objects.raw('SELECT id, sum(price) as total FROM finance_app_sstuff')
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price,
+               'body_big_price': body_big_price, 'total_sum': total_sum}
     return render(request, 'finance_app/sstuff_list_july.html', context)
 
 
@@ -651,7 +655,11 @@ def ffood_list_july(request):
         body_big_price.append(dict(title=i.title, total=i.total))
     headers_big_price = ['title', 'total']
 
-    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price, 'body_big_price': body_big_price}
+    # total
+    total_sum = FFoodProducts.objects.raw('SELECT id, sum(price) as total FROM finance_app_ffoodproducts')
+
+    context = {'headers': headers, 'body': body, 'headers_big_price': headers_big_price,
+               'body_big_price': body_big_price, 'total_sum': total_sum}
     return render(request, 'finance_app/ffood_list_july.html', context)
 
 
