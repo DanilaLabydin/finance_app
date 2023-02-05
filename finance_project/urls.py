@@ -1,4 +1,5 @@
-﻿"""finance_project URL Configuration
+﻿#_*_coding: utf-8 _*_
+"""finance_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
