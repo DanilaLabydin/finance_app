@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "finance-app"
+version = "0.1.0"
+description = ""
+authors = ["DanilaLabydin <labydin2605@mail.ru>"]
+readme = "README.md"
+packages = [{include = "finance_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.5"
+django-extensions = "^3.2.3"
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.dependencies.dependencies]
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
