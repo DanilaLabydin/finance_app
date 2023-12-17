@@ -1,16 +1,7 @@
-from pathlib import Path
-
-
-# Build pths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
+from pathlib import Path
 
 
 if os.path.isfile(".env"):
@@ -19,9 +10,25 @@ else:
     raise Exception("No .env file found")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
 
-if not SECRET_KEY:
-    raise Exception("Insert your secret key in your .env file")
+
+if not all([SECRET_KEY, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT]):
+    raise Exception(
+        ".env file doesn't contain all variables, please check the .env_sample file"
+    )
+# Build pths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# SECURITY WARNING: keep the secret key used in production secret!
+from dotenv import load_dotenv
+import os
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,11 +85,14 @@ WSGI_APPLICATION = "finance_project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": f"{DB_NAME}",
+        "USER": f"{DB_USER}",
+        "PASSWORD": f"{DB_PASSWORD}",
+        "HOST": f"{DB_HOST}",
+        "PORT": f"{DB_PORT}",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
