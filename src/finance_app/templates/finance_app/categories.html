@@ -1,0 +1,41 @@
+{% extends "finance_app/base.html" %}
+{% load poll_extras %}
+{% block content %}
+<p>
+    <input
+        value="Add a new category"
+        type="button"
+        onclick="location.href='new_category'"/>
+</p>
+<table>
+    <thead>
+      <tr>
+        <th>
+            id
+            <a href="{% url 'food_title_asc' %}"></a>
+            <a href="{% url 'food_title_desc' %}"></a>
+        </th>
+         <th>
+             name
+             <a href="{% url 'food_title_asc' %}"></a>
+             <a href="{% url 'food_title_desc' %}"></a>
+         </th>
+          <th>
+             description
+             <a href="{% url 'food_amount_asc' %}"></a>
+             <a href="{% url 'food_amount_desc' %}"></a>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bd in body  %}
+       <tr>
+        {% for h in headers  %}
+         {% with h as key %}
+         <td>{{ bd|get_dict_item:key }}</td>
+         {% endwith %}
+        {% endfor %}
+       </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

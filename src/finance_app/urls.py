@@ -1,8 +1,17 @@
 from django.urls import path
+from .views import index, get_user_category, add_user_category
 from . import views
 
+
+# urlpatterns = [
+#     path("", index, name="main_page"),
+#     path("categories/", get_user_category, name="get_all_categories"),
+# ]
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", index, name="main_page"),
+    path("categories/", get_user_category, name="get_all_categories"),
+    path("categories/new_category", add_user_category, name="new_category"),
+    # path("", views.index, name="index"),
     path("items_list/", views.items_list, name="items_list"),
     path("stuff_list", views.stuff_list, name="stuff_list"),
     path("items_list/new_item/", views.add_item, name="new_item"),

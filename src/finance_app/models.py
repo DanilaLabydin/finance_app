@@ -15,11 +15,17 @@ def get_time():
 #     time_update = models.DateField(default = get_time)
 
 
+# class UserSettings(models.Model):  ## write smth about user restrictions for their spents
+#     ...
+
+## class Currency(models.Model) ## persistent currancy data (rubles, dollars, etc)
+
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=500, null=True)
-    user = models.UUIDField(null=True)
+    # user = models.UUIDField(null=True)
+    archive = models.BooleanField(default=False)
     time_create = models.DateField(default=get_time)
     time_update = models.DateField(default=get_time)
 
@@ -33,7 +39,8 @@ class Spent(models.Model):
     price = models.FloatField(null=False)
     description = models.CharField(max_length=500, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    user = models.UUIDField(null=True)
+    # user = models.UUIDField(null=True)
+    archive = models.BooleanField(default=False)
     time_create = models.DateField(default=get_time)
     time_update = models.DateField(default=get_time)
 

@@ -1,7 +1,13 @@
 from django import forms
-from .models import FoodProducts, Stuff, SStuff, FFoodProducts
+from .models import FoodProducts, Stuff, SStuff, FFoodProducts, Category
 
 
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ["name", "description"]
+
+        
 class FoodProductsForm(forms.ModelForm):
     class Meta:
         model = FoodProducts

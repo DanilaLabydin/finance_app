@@ -2,13 +2,53 @@ import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import FoodProducts, Rest, Stuff, SStuff, FFoodProducts
+from .models import FoodProducts, Rest, Stuff, SStuff, FFoodProducts, Category, Spent
 from django.views.generic import CreateView
-from .forms import FoodProductsForm, StuffForm, SStuffForm, FFoodForm
+from .forms import FoodProductsForm, StuffForm, SStuffForm, FFoodForm, CategoryForm
 
 
 def index(request):
     return render(request, "finance_app/index.html")
+
+
+def get_all_user_spents(request):
+    ...
+
+
+def get_user_category(request):
+    try:
+        categories = Category.objects.all()
+    except Exception as e:
+        return 
+    headers = ["id", "name", "description"]
+    body = [dict(id=cat_obj.id, name=cat_obj.name, description=cat_obj.description) for cat_obj in categories]
+    context = {"headers": headers, "body": body}
+    return render(request, "finance_app/categories.html", context)
+
+
+def add_item(request):
+    if request.method != "POST":
+        form = FoodProductsForm()
+    else:
+        form = FoodProductsForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("items_list")
+
+    context = {"form": form}
+    return render(request, "finance_app/add_item.html", context)
+
+
+def add_user_category(request):
+    if request.method != "POST":
+        form = CategoryForm()
+    else:
+        form = CategoryForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("get_all_categories")
+    context = {"form": form}
+    return render(request, "finance_app/add_category.html", context)
 
 
 def sstuff_months(request):
