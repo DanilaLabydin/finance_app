@@ -3,6 +3,12 @@
 {% block content %}
 <p>
     <input
+        value="Add a new spent"
+        type="button"
+        onclick="location.href='new_spent'"/>
+</p>
+<p>
+    <input
         value="Add a new category"
         type="button"
         onclick="location.href='new_category'"/>
@@ -11,25 +17,35 @@
     <thead>
       <tr>
         <th>
-          id
-          <a href=""></a>
-          <a href=""></a>
-      </th>
+            id
+            <a href=""></a>
+            <a href=""></a>
+        </th>
          <th>
              name
              <a href=""></a>
              <a href=""></a>
          </th>
           <th>
-             description
+             price
              <a href=""></a>
              <a href=""></a>
+          </th>
+          <th>
+            description
+            <a href=""></a>
+            <a href=""></a>
+         </th>
+         <th>
+            category
+            <a href=""></a>
+            <a href=""></a>
+         </th>
       </tr>
     </thead>
     <tbody>
       {% for bd in body  %}
        <tr>
-        <td>{{ bd.id }}</td>
         {% for h in headers  %}
          {% with h as key %}
          <td>{{ bd|get_dict_item:key }}</td>

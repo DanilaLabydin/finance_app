@@ -1,6 +1,5 @@
 {% extends "finance_app/base.html" %}
 {% block content %}
-<p>Add a new ffood:</p>
 <form action="{% url 'new_category' %}" method='post'>
 {% csrf_token %}
 {{ form.as_p }}
