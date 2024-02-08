@@ -29,12 +29,9 @@
     <tbody>
       {% for bd in body  %}
        <tr>
-        <td>{{ bd.id }}</td>
-        {% for h in headers  %}
-         {% with h as key %}
-         <td>{{ bd|get_dict_item:key }}</td>
-         {% endwith %}
-        {% endfor %}
+        <td><a href="/categories/{{ bd.id }}">{{ bd.id }}</a></td>
+        <td>{{bd.name}}</td>
+        <td>{{bd.description}}</td>
        </tr>
       {% endfor %}
     </tbody>

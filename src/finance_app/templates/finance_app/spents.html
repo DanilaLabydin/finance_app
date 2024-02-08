@@ -1,17 +1,15 @@
 {% extends "finance_app/base.html" %}
-{% load poll_extras %}
 {% block content %}
 <p>
     <input
         value="Add a new spent"
         type="button"
         onclick="location.href='new_spent'"/>
+      
+      
 </p>
 <p>
-    <input
-        value="Add a new category"
-        type="button"
-        onclick="location.href='new_category'"/>
+  <a href="/categories/new_category">Add a new category</a>
 </p>
 <table>
     <thead>
@@ -41,16 +39,28 @@
             <a href=""></a>
             <a href=""></a>
          </th>
+         <th>
+          create time
+          <a href=""></a>
+          <a href=""></a>
+       </th>
+       <th>
+        last modified
+        <a href=""></a>
+        <a href=""></a>
+     </th>
       </tr>
     </thead>
     <tbody>
       {% for bd in body  %}
        <tr>
-        {% for h in headers  %}
-         {% with h as key %}
-         <td>{{ bd|get_dict_item:key }}</td>
-         {% endwith %}
-        {% endfor %}
+        <td><a href="/spents/{{ bd.id }}">{{ bd.id }}</a></td>
+        <td>{{bd.name}}</td>
+        <td>{{bd.price}}₽</td>
+        <td>{{bd.description}}</td>
+        <td>{{bd.category}}</td>
+        <td>{{bd.time_create}}</td>
+        <td>{{bd.time_update}}</td>
        </tr>
       {% endfor %}
     </tbody>

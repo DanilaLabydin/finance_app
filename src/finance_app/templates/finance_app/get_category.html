@@ -1,0 +1,11 @@
+{% extends "finance_app/base.html" %}
+{% block content %}
+
+<h2>Category: {{ category.name }}</h2>
+<ul>
+    <li>Description: {{ category.description }}</li>
+    <li>Last modified: {{ category.time_update}}</li>
+
+
+</ul>
+{% endblock %}

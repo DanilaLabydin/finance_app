@@ -1,0 +1,13 @@
+{% extends "finance_app/base.html" %}
+{% block content %}
+
+<h2>Spent: {{ spent.name }}</h2>
+<ul>
+    <li>Description: {{ spent.description }}</li>
+    <li>Price: {{ spent.price }}₽</li>
+    <li>Category: {{ spent.category }}</li>
+    <li>Last modified: {{spent.time_update}}</li>
+
+
+</ul>
+{% endblock %}
