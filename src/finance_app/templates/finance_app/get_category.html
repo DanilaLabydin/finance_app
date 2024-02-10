@@ -1,6 +1,10 @@
 {% extends "finance_app/base.html" %}
 {% block content %}
 
+<p><a href="/categories/{{ category_id }}/update">Update Category</a></p>
+<p><a href="/categories/{{ category_id }}/delete">Delete Category</a></p>
+<p><a href="/categories">Back</a></p>
+
 <h2>Category: {{ category.name }}</h2>
 <ul>
     <li>Description: {{ category.description }}</li>

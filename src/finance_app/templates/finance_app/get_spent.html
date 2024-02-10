@@ -1,6 +1,10 @@
 {% extends "finance_app/base.html" %}
 {% block content %}
 
+<p><a href="/spents/{{ spent_id }}/update">Update Spent</a></p>
+<p><a href="/spents/{{ spent_id }}/delete">Delete Spent</a></p>
+<p><a href="/spents">Back</a></p>
+
 <h2>Spent: {{ spent.name }}</h2>
 <ul>
     <li>Description: {{ spent.description }}</li>

@@ -1,16 +1,18 @@
 {% extends "finance_app/base.html" %}
 {% block content %}
+
+<p><a href="/categories/{{ category_id }}">Back to Category</a></p>
+
 <div class="main">
     <!-- Create a Form -->
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
- 
-        <!-- form as paragraph -->
-        {{ form.as_p }}
- 
-        <input type="submit" value="Update">
+        Are you want to delete this Category ?
+        <input type="submit" value="Yes" />
+        <a href="/">Cancel </a>
     </form>
+</div>
  
 </div>
 {% endblock content %}
