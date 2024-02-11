@@ -11,6 +11,35 @@
 <p>
   <a href="/categories/new_category">Add a new category</a>
 </p>
+<p>
+  Total: {{total_spent.total}} ₽ 
+</p>
+<p>
+  Spents by category:
+  <table>
+    <thead>
+      <tr>
+        <th>
+          category
+        </th>
+        <th>
+          total sum
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in category_spent  %}
+       <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.price}}₽</td>
+       </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</p>
+<p>
+  All spents:
 <table>
     <thead>
       <tr>
@@ -65,4 +94,5 @@
       {% endfor %}
     </tbody>
 </table>
+</p>
 {% endblock %}

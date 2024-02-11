@@ -1,5 +1,8 @@
-from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
+from django.shortcuts import (
+    get_object_or_404, render, HttpResponseRedirect, redirect
+    )
 from django.http import Http404
+from django.db.models import Sum
 
 from .models import Category, Spent
 from .forms import CategoryForm, SpentForm
@@ -26,7 +29,15 @@ def get_user_category(request):
 def get_user_spents(request):
     try:
         spents = Spent.objects.all()
+        total_spent = Spent.objects.aggregate(total=Sum('price', default=0))
+        category_spent = Spent.objects.raw('''
+        SELECT c.id, c.name AS name, SUM(s.price) as price FROM finance_app_spent s LEFT JOIN finance_app_category c ON s.category_id = c.id GROUP BY c.id;''')
+        cat_spents = []
+        for i in category_spent:
+            print(i)
+            cat_spents.append(dict(name=i.name, price=i.price))
     except Exception as e:
+        print(f'Error: {e}')
         return
     headers = ["id", "name", "price", "description", "category"]
     body = [
@@ -41,7 +52,12 @@ def get_user_spents(request):
         )
         for spent_obj in spents
     ]
-    context = {"headers": headers, "body": body}
+    context = {
+        "headers": headers,
+        "body": body,
+        "total_spent": total_spent,
+        "category_spent": cat_spents
+        }
     return render(request, "finance_app/spents.html", context)
 
 
